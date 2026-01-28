@@ -1,0 +1,53 @@
+% Template de relatório (ponto de entrada)
+\documentclass[a4paper,12pt]{article}
+
+% 1) Metadados e flags
+\input{tex/metadata}
+\input{tex/settings}
+
+% 2) Estilo/pacotes do template
+\usepackage{tex/template}
+
+\begin{document}
+
+% --- Capa ---
+\pagenumbering{gobble}
+\input{tex/cover}
+
+% --- Pré-textual ---
+\pagenumbering{roman}
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+
+% (Opcional)
+% \listoffigures
+% \clearpage
+% \listoftables
+% \clearpage
+
+% --- Texto principal ---
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{sections/01_introduction}
+\clearpage
+\input{sections/02_background}
+\clearpage
+\input{sections/03_methods}
+\clearpage
+\input{sections/04_results}
+\clearpage
+\input{sections/05_conclusion}
+\clearpage
+
+% --- Bibliografia ---
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+\clearpage
+
+% --- Apêndices ---
+\appendix
+\input{appendix/appendix_a}
+
+\end{document}

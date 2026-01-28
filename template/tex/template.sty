@@ -1,0 +1,122 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tex/template}[2026/01/28 Report template]
+
+% --- Layout ---
+\RequirePackage[left=30mm,top=30mm,right=30mm,bottom=30mm]{geometry}
+\RequirePackage{setspace}
+\RequirePackage{graphicx}
+\RequirePackage{subcaption}
+\RequirePackage{float}
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+
+% --- Encoding / language ---
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english,portuguese]{babel}
+\RequirePackage{ifthen}
+\RequirePackage{etoolbox}
+
+% --- Math ---
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
+\RequirePackage{mathtools}
+\RequirePackage{bm}
+\RequirePackage{siunitx}
+
+% --- References ---
+\RequirePackage[square,numbers,sort]{natbib}
+\RequirePackage{hyperref}
+\RequirePackage[capitalise]{cleveref}
+
+% --- Styling ---
+\RequirePackage{xcolor}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{tcolorbox}
+
+% --- Optional minted/listings ---
+\RequirePackage{listings}
+\AtBeginDocument{%
+  \ifuseminted
+    \RequirePackage{minted}
+    \usemintedstyle{emacs}
+  \fi
+}
+
+% --- Colors ---
+\definecolor{azulTitulos}{RGB}{0, 76, 153}
+
+% --- Section titles ---
+\titleformat{\section}
+  {\color{azulTitulos}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\color{azulTitulos}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+
+% --- Hyperref ---
+\hypersetup{
+  colorlinks,
+  linkcolor={black},
+  citecolor={blue!50!black},
+  urlcolor={blue!80!black}
+}
+
+% --- Header/footer ---
+\setlength{\headheight}{15.05pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\fancyfoot[L]{\ReportFooterLeft}
+\fancyfoot[C]{\ReportFooterCenter}
+\fancyfoot[R]{\thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Example block ---
+\newtcolorbox[auto counter, number within=section]{exampleblock}[2][]{
+  colframe=gray!80!black,
+  colback=white,
+  coltitle=black,
+  title=Exemplo \thetcbcounter: #2,
+  #1,
+  fonttitle=\bfseries,
+  sharp corners=southwest
+}
+
+% --- Listings defaults (used when minted is off) ---
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  stringstyle=\color{red},
+  commentstyle=\color{gray}\itshape,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=8pt,
+  backgroundcolor=\color{white},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=single,
+  rulecolor=\color{black},
+  tabsize=4,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=true,
+}
+
+% --- General ---
+\graphicspath{{img/}}
+\onehalfspacing
+
+% Language selection from metadata
+\AtBeginDocument{%
+  \ifthenelse{\equal{\ReportLanguage}{portuguese}}{\selectlanguage{portuguese}}{\selectlanguage{english}}%
+}

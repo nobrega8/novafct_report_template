@@ -1,0 +1,35 @@
+% Capa (usa variáveis de metadata.tex)
+\thispagestyle{empty}
+\begin{center}
+    \normalfont
+    \IfFileExists{img/logo.png}{\includegraphics[width=0.65\columnwidth]{img/logo.png}\\[1cm]}{\vspace*{1.5cm}}
+
+    {\Large \ReportDepartment\\[0.2cm]}
+    {\large \ReportProgram\\[0.8cm]}
+
+    \rule{\linewidth}{0.2mm}\\[0.4cm]
+    {\huge \bfseries \ReportTitle\par}
+    \ifdefempty{\ReportSubtitle}{}{\vskip 0.25cm {\Large \ReportSubtitle\par}}
+    \vskip 0.4cm
+    {\Large \bfseries \ReportCourse\par}
+    \vskip 0.25cm
+    \rule{\linewidth}{0.2mm}\\[1.0cm]
+
+    \begin{minipage}[t]{0.48\textwidth}
+        \begin{flushleft}\large
+            \emph{Authors:}\\
+            \ReportAuthors
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \begin{flushright}\large
+            \emph{Supervisors:}\\
+            \ReportSupervisors
+        \end{flushright}
+    \end{minipage}
+
+    \vfill
+    {\normalsize \ReportInstitution\\\ReportDate\par}
+\end{center}
+\clearpage
