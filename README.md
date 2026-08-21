@@ -1,48 +1,64 @@
-# LaTeX Report Template
+# Template de Relatório LaTeX (NOVA FCT)
 
-Este repositório contém:
-- `template/`: o template genérico (é isto que deves copiar para um novo relatório)
-- `scripts/new-report.sh`: script para criar um novo relatório a partir do template
-- o resto do conteúdo atual pode servir como exemplo/arquivo (não é necessário para o template)
+Template de relatório em LaTeX **pronto a usar**, que cumpre os requisitos de formatação exigidos para relatórios na **NOVA FCT** (Universidade NOVA de Lisboa, Faculdade de Ciências e Tecnologia): capa com o logótipo oficial, margens de 3 cm, cabeçalho/rodapé com numeração "página de total", títulos de secção estilizados, e estrutura pré-textual/textual/apêndices.
 
-## Criar um novo relatório
+Não precisas de copiar nada para outra pasta nem correr scripts: edita os ficheiros deste repositório diretamente e compila.
 
-A partir da raiz do repositório:
+## Pré-visualização
 
-```bash
-chmod +x scripts/new-report.sh
-./scripts/new-report.sh my_new_report
-```
+![Capa do relatório](img/examples/cover-1.png)
 
-Isto cria uma pasta `my_new_report/` com a estrutura completa do template.
+## Começar a usar
+
+1. Faz *fork*/*clone* deste repositório (ou usa o botão **"Use this template"** no GitHub, se disponível). Não precisas de copiar a pasta para outro sítio: este repositório **é** o teu relatório.
+2. Edita [tex/metadata.tex](tex/metadata.tex) com o título, autores, curso e restante informação da capa.
+3. Escreve o conteúdo em [sections/](sections/) e [appendix/](appendix/), e as referências em [bibliography.bib](bibliography.bib).
+4. Compila com `make pdf`.
 
 ## Compilar
 
-Dentro da pasta do relatório (ex.: `my_new_report/` ou `template/`):
-
 ```bash
-make pdf
+make pdf     # compila o relatório para build/main.pdf
+make watch   # compila automaticamente sempre que gravas um ficheiro
+make clean   # remove os ficheiros de build
 ```
 
-Outputs vão para `build/`.
-
-### minted (opcional)
-
-Por defeito o template usa `listings` para não exigir `-shell-escape`.
-
-Se quiseres `minted`:
-1) em `tex/settings.tex` muda para `\usemintedtrue`
-2) em `latexmkrc` descomenta a linha do `-shell-escape`
+Todos os outputs (PDF, `.aux`, `.log`, etc.) vão para `build/`, para manter a raiz do repositório limpa.
 
 ## Onde editar
 
-- `tex/metadata.tex`: título, autores, curso, instituição, data
-- `sections/`: conteúdo principal
-- `appendix/`: anexos
-- `bibliography.bib`: referências
-- `img/`: figuras (opcional `img/logo.png` na capa)
+| Ficheiro / pasta | Para quê |
+|---|---|
+| [tex/metadata.tex](tex/metadata.tex) | Título, subtítulo, curso, instituição, autores, docentes, data, idioma |
+| [sections/](sections/) | Capítulos do relatório (introdução, metodologia, resultados, ...) |
+| [appendix/](appendix/) | Anexos |
+| [bibliography.bib](bibliography.bib) | Referências bibliográficas (BibTeX) |
+| [img/](img/) | Figuras; `img/logo.png` é usado automaticamente na capa |
+| [tex/settings.tex](tex/settings.tex) | Flags do template (ex.: ativar `minted`) |
+| [tex/template.sty](tex/template.sty) | Estilo/layout (margens, cores, cabeçalho/rodapé, pacotes); normalmente não precisas de mexer aqui |
+| [main.tex](main.tex) | Ponto de entrada; adiciona/remove secções e apêndices aqui |
 
-## Logo (NOVA FCT)
+O relatório inclui `\tableofcontents` e um exemplo de bloco de destaque (`exampleblock`) e citação, visíveis na pré-visualização acima.
 
-Por agora o template assume NOVA FCT e já inclui `template/img/logo.png`.
-Se no futuro quiseres generalizar, basta trocar esse ficheiro ou ajustar a capa em `template/tex/cover.tex`.
+## Idioma
+
+O relatório vem em português por defeito, mas suporta também inglês (via `babel`). Muda em [tex/metadata.tex](tex/metadata.tex):
+
+```latex
+\newcommand{\ReportLanguage}{portuguese} % ou english
+```
+
+Se mudares para inglês, atualiza também os títulos das secções em [sections/](sections/) e [appendix/](appendix/).
+
+## Logótipo NOVA FCT
+
+O template já inclui `img/logo.png` (logótipo da NOVA FCT) e usa-o automaticamente na capa. Para outra instituição, basta substituir esse ficheiro por outro logótipo (ou apagá-lo, a capa ajusta-se automaticamente sem logo).
+
+## minted (opcional)
+
+Por defeito o template usa `listings` para blocos de código, para não exigir `-shell-escape`. Se preferires `minted`:
+
+1. Em [tex/settings.tex](tex/settings.tex), muda para `\usemintedtrue`.
+2. Em [.latexmkrc](.latexmkrc), descomenta a linha com `-shell-escape`.
+
+Requer `pygments` instalado (`pip install pygments`).
