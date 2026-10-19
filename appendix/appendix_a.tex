@@ -2,3 +2,46 @@
 \label{apx:extra}
 
 Coloca aqui detalhes de implementação, derivações longas, ou dumps de código.
+
+\subsection{Fórmula resolvente}
+
+Dada a equação $ax^2 + bx + c = 0$ com $a \neq 0$, completando o quadrado:
+\begin{align*}
+  x^2 + \frac{b}{a}x &= -\frac{c}{a} \\
+  \left(x + \frac{b}{2a}\right)^2 &= \frac{b^2 - 4ac}{4a^2} \\
+  x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{align*}
+
+\begin{itemize}
+  \item $\Delta > 0$: duas soluções reais distintas;
+  \item $\Delta = 0$: uma solução real (dupla);
+  \item $\Delta < 0$: sem soluções reais.
+\end{itemize}
+
+\subsection{Exemplo gráfico (TikZ)}
+
+Para $x^2 - x - 2 = 0$ temos $a=1$, $b=-1$, $c=-2$, logo $\Delta = 9$ e
+\[
+  x = \frac{1 \pm 3}{2} \;\Rightarrow\; x_1 = -1, \quad x_2 = 2.
+\]
+A Figura~\ref{fig:parabola} mostra que as soluções são as interseções da parábola com o eixo $x$.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.8\textwidth, height=6.5cm,
+      axis lines=middle, xlabel={$x$}, ylabel={$y$},
+      xmin=-3, xmax=4, ymin=-3.5, ymax=5,
+      grid=both, grid style={gray!15},
+      every axis label/.append style={font=\small}
+    ]
+      \addplot[azulTitulos, very thick, domain=-2.2:3.2, samples=80] {x^2 - x - 2};
+      \addplot[only marks, mark=*, mark size=2.5pt, red!70!black] coordinates {(-1,0) (2,0)};
+      \node[above right, font=\small] at (axis cs:-1,0) {$x_1=-1$};
+      \node[above left, font=\small] at (axis cs: 2,0) {$x_2=2$};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Gráfico de $y = x^2 - x - 2$ e respetivas raízes.}
+  \label{fig:parabola}
+\end{figure}

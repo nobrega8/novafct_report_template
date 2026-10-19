@@ -45,6 +45,9 @@
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins,breakable}
 \RequirePackage{microtype}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
 \RequirePackage{caption}
 \RequirePackage{enumitem}
 
@@ -63,7 +66,7 @@
 % --- Section titles ---
 \titleformat{\section}
   {\color{azulTitulos}\normalfont\Large\bfseries}
-  {\thesection}{1em}{}[\vspace{-0.2em}{\color{azulTitulos}\titlerule[0.6pt]}]
+  {\thesection}{1em}{}[\vspace{0.1em}{\color{azulTitulos}\titlerule[0.6pt]}]
 \titleformat{\subsection}
   {\color{azulTitulos}\normalfont\large\bfseries\scshape}
   {\thesubsection}{1em}{}
