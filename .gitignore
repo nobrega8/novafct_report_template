@@ -4,6 +4,8 @@ main.pdf
 *.aux
 *.bbl
 *.blg
+*.bcf
+*.run.xml
 *.fdb_latexmk
 *.fls
 *.log

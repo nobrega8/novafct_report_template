@@ -4,6 +4,8 @@ Template de relatório em LaTeX **pronto a usar**, que cumpre os requisitos de f
 
 Não precisas de copiar nada para outra pasta nem correr scripts: edita os ficheiros deste repositório diretamente e compila.
 
+> Template LaTeX para relatórios da NOVA FCT — capa oficial, margens de 3 cm, tipo de letra TeX Gyre Pagella, bibliografia e `make pdf`. Se te foi útil, deixa uma ⭐ e partilha com colegas!
+
 ## Pré-visualização
 
 ![Capa do relatório](img/examples/cover-1.png)
@@ -39,6 +41,10 @@ Todos os outputs (PDF, `.aux`, `.log`, etc.) vão para `build/`, para manter a r
 | [main.tex](main.tex) | Ponto de entrada; adiciona/remove secções e apêndices aqui |
 
 O relatório inclui `\tableofcontents` e um exemplo de bloco de destaque (`exampleblock`) e citação, visíveis na pré-visualização acima.
+
+## Tipo de letra
+
+O texto usa **TeX Gyre Pagella** (clone de Palatino) com matemática `newpxmath`. Para mudar, edita a secção "Tipo de letra" em [tex/template.sty](tex/template.sty).
 
 ## Idioma
 

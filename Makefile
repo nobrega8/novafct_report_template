@@ -15,6 +15,7 @@ pdf:
 
 clean:
 	$(LATEXMK) -C
+	rm -rf build
 
 watch:
 	$(LATEXMK) -pdf -pvc -interaction=nonstopmode main.tex

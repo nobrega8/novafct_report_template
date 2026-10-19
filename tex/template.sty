@@ -27,6 +27,11 @@
 \RequirePackage{bm}
 \RequirePackage{siunitx}
 
+% --- Tipo de letra: TeX Gyre Pagella (texto) + newpx (matemática) ---
+\RequirePackage{tgpagella}
+\renewcommand{\ttdefault}{lmtt}
+\RequirePackage[bigdelims,vvarbb]{newpxmath}
+
 % --- References ---
 \RequirePackage[square,numbers,sort]{natbib}
 \RequirePackage{hyperref}
@@ -38,6 +43,10 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\RequirePackage{microtype}
+\RequirePackage{caption}
+\RequirePackage{enumitem}
 
 % --- Optional minted/listings ---
 \RequirePackage{listings}
@@ -54,58 +63,81 @@
 % --- Section titles ---
 \titleformat{\section}
   {\color{azulTitulos}\normalfont\Large\bfseries}
-  {\thesection}{1em}{}
+  {\thesection}{1em}{}[\vspace{-0.2em}{\color{azulTitulos}\titlerule[0.6pt]}]
 \titleformat{\subsection}
-  {\color{azulTitulos}\normalfont\large\bfseries}
+  {\color{azulTitulos}\normalfont\large\bfseries\scshape}
   {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\color{azulTitulos}\normalfont\normalsize\bfseries\itshape}
+  {\thesubsubsection}{1em}{}
+\titlespacing*{\section}{0pt}{2.2ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{2.0ex plus 1ex minus .2ex}{1.0ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{1.6ex plus 1ex minus .2ex}{0.8ex plus .2ex}
+
+% --- Legendas ---
+\captionsetup{font=small,labelfont={bf,color=azulTitulos},labelsep=period,skip=6pt}
+
+% --- Listas ---
+\setlist{itemsep=0.2em,topsep=0.4em,parsep=0pt}
+\setlist[itemize,1]{label=\textcolor{azulTitulos}{\textbullet}}
+\setlist[itemize,2]{label=\textcolor{azulTitulos}{--}}
 
 % --- Hyperref ---
 \hypersetup{
   colorlinks,
   linkcolor={black},
-  citecolor={blue!50!black},
-  urlcolor={blue!80!black}
+  citecolor={azulTitulos},
+  urlcolor={azulTitulos}
 }
 
 % --- Header/footer ---
 \setlength{\headheight}{15.05pt}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\leftmark}
-\fancyhead[R]{\thepage}
-\fancyfoot[L]{\ReportFooterLeft}
-\fancyfoot[C]{\ReportFooterCenter}
-\fancyfoot[R]{\thepage\ de \pageref{LastPage}}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\small\itshape\color{gray!70!black}\leftmark}
+\fancyfoot[L]{\small\ReportFooterLeft}
+\fancyfoot[C]{\small\ReportFooterCenter}
+\fancyfoot[R]{\small\thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+\renewcommand{\headrule}{{\color{gray!60}\hrule width\headwidth height\headrulewidth}}
+\renewcommand{\footrule}{{\color{gray!60}\hrule width\headwidth height\footrulewidth}}
+\renewcommand{\footnotesize}{\fontsize{9}{11}\selectfont}
 
 % --- Example block ---
 \newtcolorbox[auto counter, number within=section]{exampleblock}[2][]{
-  colframe=gray!80!black,
-  colback=white,
-  coltitle=black,
+  enhanced,
+  breakable,
+  colback=azulTitulos!5,
+  colframe=azulTitulos,
+  coltitle=azulTitulos,
+  colbacktitle=azulTitulos!5,
+  boxrule=0pt,
+  frame hidden,
+  borderline west={2.5pt}{0pt}{azulTitulos},
+  sharp corners,
+  left=8pt,
   title=Exemplo \thetcbcounter: #2,
-  #1,
   fonttitle=\bfseries,
-  sharp corners=southwest
+  #1
 }
 
 % --- Listings defaults (used when minted is off) ---
 \lstset{
   basicstyle=\ttfamily\footnotesize,
-  keywordstyle=\color{blue}\bfseries,
-  stringstyle=\color{red},
+  keywordstyle=\color{azulTitulos}\bfseries,
+  stringstyle=\color{green!40!black},
   commentstyle=\color{gray}\itshape,
   numbers=left,
   numberstyle=\tiny\color{gray},
   stepnumber=1,
   numbersep=8pt,
-  backgroundcolor=\color{white},
+  backgroundcolor=\color{gray!5},
   showspaces=false,
   showstringspaces=false,
   showtabs=false,
-  frame=single,
-  rulecolor=\color{black},
+  frame=leftline,
+  rulecolor=\color{azulTitulos},
   tabsize=4,
   captionpos=b,
   breaklines=true,
@@ -114,7 +146,10 @@
 
 % --- General ---
 \graphicspath{{img/}}
-\onehalfspacing
+\setstretch{1.25}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\renewcommand{\arraystretch}{1.2}
 
 % Language selection from metadata
 \AtBeginDocument{%
